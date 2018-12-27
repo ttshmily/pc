@@ -2,7 +2,7 @@ FROM python:3.6
 
 MAINTAINER Fang Chao <ttshmilyfc@qq.com>
 
-COPY ./* /usr/src/
+COPY . /usr/src/
 
 WORKDIR /usr/src
 
