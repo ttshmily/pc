@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt && \
     pwd && ls -l && \
     rm -rf ~/.cache/pip
 
-ENTRYPOINT /usr/src/start-django.sh
+ENTRYPOINT /usr/src/start_django.sh
