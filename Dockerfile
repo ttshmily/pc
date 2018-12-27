@@ -2,7 +2,9 @@ FROM python:3.6
 
 MAINTAINER Fang Chao <ttshmilyfc@qq.com>
 
-COPY pc/ book/ requirements.txt manage.py uwsgi.ini /usr/src/
+COPY requirements.txt manage.py uwsgi.ini /usr/src/
+COPY pc/ /usr/src/pc/
+COPY book/ /usr/src/book/
 
 WORKDIR /usr/src
 
