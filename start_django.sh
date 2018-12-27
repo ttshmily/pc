@@ -1,7 +1,7 @@
-#! /bin/sh
+#!/bin/sh
 
-python manage.py makemigrations
+python3 manage.py makemigrations
 
-python manage.py migrate
+python3 manage.py migrate
 
-uwsgi --ini /root/docker-django-test-uwsgi.ini
+uwsgi --ini uwsgi.ini
