@@ -75,11 +75,6 @@ WSGI_APPLICATION = 'pc.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-MYSQL_HOST = '127.0.0.1'
-MYSQL_USER = 'root'
-MYSQL_PWD = '861031'
-MYSQL_DB = 'bookinfo'
-
 
 DATABASES = {
     # 'default': {
@@ -89,10 +84,10 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': MYSQL_DB,
-        'USER': MYSQL_USER,
-        'PASSWORD': MYSQL_PWD,
-        'HOST': MYSQL_HOST,
+        'NAME': os.getenv('MYSQL_DB', 'bookinfo'),
+        'USER': os.getenv('MYSQL_USER', 'root'),
+        'PASSWORD': os.getenv('MYSQL_PWD', '861031'),
+        'HOST': os.getenv('MYSQL_HOST', '127.0.0.1'),
         'PORT': '3306',
     }
 }
