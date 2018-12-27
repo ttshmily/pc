@@ -8,7 +8,10 @@ WORKDIR /usr/src
 
 EXPOSE 9005
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt && \
+    python manage.py makemigrations && \
+    python manage.py migrate && \
+    pwd && ls -l
 
 CMD ["--ini", "uwsgi.ini"]
 
