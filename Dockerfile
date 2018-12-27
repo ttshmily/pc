@@ -9,9 +9,9 @@ WORKDIR /usr/src
 EXPOSE 9005
 
 RUN pip install -r requirements.txt && \
+    pwd && ls -l && \
     python manage.py makemigrations && \
-    python manage.py migrate && \
-    pwd && ls -l
+    python manage.py migrate
 
 CMD ["--ini", "uwsgi.ini"]
 
