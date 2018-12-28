@@ -3,4 +3,5 @@ djangorestframework
 PyMySQL
 PyMySqlDB
 Pillow
+whitenoise
 uwsgi
