@@ -18,7 +18,6 @@ tests/.coverage
 build/
 static/
 tests/report/
-book/migrations/
 =======
 ### Django ###
 *.log

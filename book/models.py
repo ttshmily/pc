@@ -7,4 +7,4 @@ class BookInformation(models.Model):
     pub_date = models.DateField(verbose_name='发布日期', null=True)
     read_count = models.IntegerField(default=1, verbose_name='阅读量')
     comment_count = models.IntegerField(default=0, verbose_name='评论量')
-    cover = models.ImageField(upload_to='book_cover', verbose_name='图片', null=True)
+    book_cover = models.ImageField(upload_to='book_cover', verbose_name='封面', null=True)
