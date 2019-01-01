@@ -8,6 +8,8 @@ WORKDIR /usr/src
 
 EXPOSE 9005
 
+VOLUME ["/static"]
+
 RUN pip install -r requirements.txt && \
     pwd && ls -l && \
     rm -rf ~/.cache/pip
