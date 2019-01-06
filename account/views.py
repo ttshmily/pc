@@ -18,7 +18,7 @@ def md5(user):
 # Create your views here.
 class AuthView(APIView):
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
 
         ret = {'code': 0, 'msg': 'success'}
         try:
