@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from book.models import BookInformation
 from book.serializers import BookInformationSerializer
 from django.http import HttpResponse
@@ -16,3 +17,8 @@ class BookInformationViewSet(viewsets.ModelViewSet):
     """
     queryset = BookInformation.objects.all()
     serializer_class = BookInformationSerializer
+
+
+class BookView(APIView):
+    pass
+
