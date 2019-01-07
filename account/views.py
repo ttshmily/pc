@@ -37,7 +37,7 @@ class AuthView(APIView):
             login_name = body.get('login_name')
             password = body.get('password')
 
-            if not Users.objects.filter(mobile=login_name).first():     # 用户不存在
+            if not Users.objects.get(mobile=login_name):     # 用户不存在
                 # create a new user，return token and update "token" table
                 if not re.match(r'(.*)@', login_name):
                     u1 = Users.objects.create(signup_type=1, mobile=login_name, password=password,
@@ -49,26 +49,37 @@ class AuthView(APIView):
                                               last_login_date=datetime.now())
                 u1.password = hashlib.sha1(bytes(password+u1.user_id.__str__(), encoding='utf-8')).hexdigest()
                 u1.save(update_fields=['password'])
-                token = md5(login_name)
+                token = md5(u1.user_id)
                 Tokens.objects.create(user=u1,
                                       token=token,
-                                      expire_to=datetime.now()+timedelta(hours=3))
+                                      expire_to=datetime.now()+timedelta(minutes=3))
                 ret['token'] = token
-                return JsonResponse(ret)
+                # return JsonResponse(ret)
             else:   # 用户存在
                 if not re.match(r'(.*)@', login_name):
-                    u1 = Users.objects.filter(mobile=login_name).first()
+                    u1 = Users.objects.get(mobile=login_name)
                 else:
-                    u1 = Users.objects.filter(email=login_name).first()
+                    u1 = Users.objects.get(email=login_name)
                 encrypt = hashlib.sha1(bytes(password+u1.user_id.__str__(), encoding='utf-8')).hexdigest()
                 if encrypt == u1.password:  # 密码匹配
                     u1.last_login_date = datetime.now()
                     u1.last_login_ip = ip
                     u1.save(update_fields=['last_login_date', 'last_login_date'])
-                    ret['token'] = Tokens.objects.filter(user=u1).first().token
-                    return JsonResponse(ret)
+                    t1 = Tokens.objects.filter(user=u1).order_by("-id").first()
+                    if t1.token and datetime.now()+timedelta(minutes=1) < t1.expire_to:
+                        ret['token'] = t1.token
+                    else:
+                        token = md5(u1.user_id)
+                        Tokens.objects.create(user=u1,
+                                              token=token,
+                                              expire_to=datetime.now() + timedelta(minutes=3))
+                        ret['token'] = token
+                    # return JsonResponse(ret)
                 else:   # 密码错误
                     ret = {'code': 101, 'msg': 'incorrect password'}
-                    return JsonResponse(ret)
+                    # return JsonResponse(ret)
         except Exception as e:
             print("exceptions CAUGHT!!!" + e)
+            ret = {'code': 1000, 'msg': 'unknown error'}
+        finally:
+            return JsonResponse(ret)
