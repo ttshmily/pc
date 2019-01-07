@@ -1,13 +1,12 @@
 from django.db import models
-import hashlib
 
 
 # Create your models here.
 class Users(models.Model):
     user_id = models.AutoField(max_length=20, unique=True, verbose_name='用户ID', primary_key=True)
 
-    login_type_choice = ((1, 'MOBILE'), (2, 'EMAIL'), (3, 'WX'))
-    login_type = models.CharField(choices=login_type_choice, max_length=1, verbose_name='登录类型')
+    signup_type_choice = ((1, 'MOBILE'), (2, 'EMAIL'), (3, 'WX'))
+    signup_type = models.CharField(choices=signup_type_choice, max_length=1, verbose_name='登录类型')
     mobile = models.CharField(max_length=11, verbose_name='手机')
     email = models.EmailField(verbose_name='邮箱')
     open_id = models.CharField(max_length=20, verbose_name='微信ID')
