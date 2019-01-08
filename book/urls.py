@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'authtest', views.BookView.as_view())
 ]

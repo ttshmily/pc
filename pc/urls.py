@@ -22,7 +22,7 @@ from account import views as accountview
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'book', bookview.BookInformationViewSet)
+router.register(r'books', bookview.BookInformationViewSet)
 # router.register(r'account', accountview.AccountViewSet)
 
 urlpatterns = [
