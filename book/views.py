@@ -3,7 +3,6 @@ from rest_framework.views import APIView
 from book.models import BookInformation
 from book.serializers import BookInformationSerializer
 from django.http import HttpResponse, JsonResponse
-from account.authentication import Authentication
 # Create your views here.
 
 
@@ -15,7 +14,7 @@ class BookInformationViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    authentication_classes = []
+    # authentication_classes = ()
     queryset = BookInformation.objects.all()
     serializer_class = BookInformationSerializer
 

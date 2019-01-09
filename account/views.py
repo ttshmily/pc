@@ -1,11 +1,13 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from account.models import Users, Tokens
+from account.serializers import UsersSerializer
+
+from datetime import datetime, timedelta
 import json
 import hashlib
 import re
-from datetime import datetime, timedelta
-from account.serializers import UsersSerializer
 
 
 def md5(user):
@@ -17,7 +19,9 @@ def md5(user):
 
 
 # Create your views here.
-class AuthView(APIView):
+class UsersView(APIView):
+
+    authentication_classes = ()
 
     def post(self, request):
         """
@@ -83,3 +87,14 @@ class AuthView(APIView):
             ret = {'code': 1000, 'msg': 'unknown error'}
         finally:
             return JsonResponse(ret)
+
+    def get(self, request):
+
+        pass
+
+
+class UsersViewSet(ModelViewSet):
+
+    authentication_classes = ()
+    queryset = Users.objects.all()
+    serializer_class = UsersSerializer

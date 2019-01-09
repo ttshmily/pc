@@ -29,6 +29,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^books/', include('book.urls')),
-    url(r'^auth/$', accountview.AuthView.as_view()),
+    url(r'^auth/$', accountview.UsersView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
