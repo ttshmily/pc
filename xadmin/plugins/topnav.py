@@ -1,7 +1,7 @@
 
 from django.template import loader
 from django.utils.text import capfirst
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.urls.base import reverse, NoReverseMatch
 from django.utils.translation import ugettext as _
 
 from xadmin.sites import site
@@ -41,7 +41,7 @@ class TopNavPlugin(BaseAdminPlugin):
                         })
                     except NoReverseMatch:
                         pass
-        return nodes.append(loader.render_to_string('xadmin/blocks/comm.top.topnav.html', {'search_models': search_models, 'search_name': SEARCH_VAR}))
+        return nodes.append(loader.render_to_string('xadmin/blocks/../templates/xadmin/blocks/comm.top.topnav.html', {'search_models': search_models, 'search_name': SEARCH_VAR}))
 
     def block_top_navmenu(self, context, nodes):
         add_models = []
@@ -67,7 +67,7 @@ class TopNavPlugin(BaseAdminPlugin):
                     pass
 
         nodes.append(
-            loader.render_to_string('xadmin/blocks/comm.top.topnav.html', {'add_models': add_models}))
+            loader.render_to_string('xadmin/blocks/../templates/xadmin/blocks/comm.top.topnav.html', {'add_models': add_models}))
 
 
 site.register_plugin(TopNavPlugin, CommAdminView)

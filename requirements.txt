@@ -9,4 +9,6 @@ future
 django-crispy-forms
 django-reversion
 django-formtools
+django-import-export
 httplib2
+six

@@ -32,8 +32,9 @@ class RefreshPlugin(BaseAdminPlugin):
                     'selected': str(r) == current_refresh,
                 } for r in self.refresh_times],
             })
-            nodes.append(loader.render_to_string('xadmin/blocks/model_list.top_toolbar.refresh.html',
-                                                 get_context_dict(context)))
+            nodes.append(loader.render_to_string(
+                'xadmin/blocks/../templates/xadmin/blocks/model_list.top_toolbar.refresh.html',
+                get_context_dict(context)))
 
 
 site.register_plugin(RefreshPlugin, ListAdminView)

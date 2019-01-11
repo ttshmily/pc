@@ -22,8 +22,6 @@ from django.forms.models import modelform_factory
 from xadmin.sites import site
 from xadmin.views import BaseAdminPlugin, ModelFormAdminView
 
-from xadmin.util import DJANGO_11
-
 
 def normalize_name(name):
     new = re.sub('(((?<=[a-z])[A-Z])|([A-Z](?![A-Z]|$)))', '_\\1', name)
@@ -332,7 +330,8 @@ class WizardFormPlugin(BaseAdminPlugin):
                 'current_step': self.steps.current,
             }),
         }
-        nodes.append(loader.render_to_string('xadmin/blocks/model_form.before_fieldsets.wizard.html', context))
+        nodes.append(loader.render_to_string(
+            'xadmin/blocks/../templates/xadmin/blocks/model_form.before_fieldsets.wizard.html', context))
 
     def block_submit_line(self, context, nodes):
         context = context.update(dict(self.storage.extra_data))
@@ -340,6 +339,7 @@ class WizardFormPlugin(BaseAdminPlugin):
             'steps': self.steps
         }
 
-        nodes.append(loader.render_to_string('xadmin/blocks/model_form.submit_line.wizard.html', context))
+        nodes.append(loader.render_to_string(
+            'xadmin/blocks/../templates/xadmin/blocks/model_form.submit_line.wizard.html', context))
 
 site.register_plugin(WizardFormPlugin, ModelFormAdminView)

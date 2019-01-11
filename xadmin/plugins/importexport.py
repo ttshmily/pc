@@ -63,7 +63,7 @@ from django.template.response import TemplateResponse
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
-from django.core.urlresolvers import reverse
+from django.urls.base import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect, HttpResponse
 
@@ -84,8 +84,9 @@ class ImportMenuPlugin(BaseAdminPlugin):
             context.update({
                 'import_url': import_url,
             })
-            nodes.append(loader.render_to_string('xadmin/blocks/model_list.top_toolbar.importexport.import.html',
-                                                 context=context))
+            nodes.append(loader.render_to_string(
+                'xadmin/blocks/../templates/xadmin/blocks/model_list.top_toolbar.importexport.import.html',
+                context=context))
 
 
 class ImportBaseView(ModelAdminView):
@@ -153,6 +154,7 @@ class ImportBaseView(ModelAdminView):
 
 
 class ImportView(ImportBaseView):
+
     def get_media(self):
         media = super(ImportView, self).get_media()
         media = media + self.vendor('xadmin.plugin.importexport.css')
@@ -254,6 +256,7 @@ class ImportView(ImportBaseView):
 
 
 class ImportProcessView(ImportBaseView):
+
     @filter_hook
     @csrf_protect_m
     @transaction.atomic
@@ -417,8 +420,9 @@ class ExportMenuPlugin(ExportMixin, BaseAdminPlugin):
             'opts': self.opts,
             'form_params': self.admin_view.get_form_params({'_action_': 'export'}),
         })
-        nodes.append(loader.render_to_string('xadmin/blocks/model_list.top_toolbar.importexport.export.html',
-                                             context=context))
+        nodes.append(loader.render_to_string(
+            'xadmin/blocks/../templates/xadmin/blocks/model_list.top_toolbar.importexport.export.html',
+            context=context))
 
 
 class ExportPlugin(ExportMixin, BaseAdminPlugin):

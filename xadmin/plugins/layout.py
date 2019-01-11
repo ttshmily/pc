@@ -74,8 +74,9 @@ class GridLayoutPlugin(BaseAdminPlugin):
                 'layouts': self._active_layouts,
                 'current_icon': self._current_icon,
             })
-            nodes.append(loader.render_to_string('xadmin/blocks/model_list.top_toolbar.layouts.html',
-                                                 context=get_context_dict(context)))
+            nodes.append(loader.render_to_string(
+                'xadmin/blocks/../templates/xadmin/blocks/model_list.top_toolbar.layouts.html',
+                context=get_context_dict(context)))
 
 
 site.register_plugin(GridLayoutPlugin, ListAdminView)

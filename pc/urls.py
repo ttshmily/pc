@@ -18,6 +18,10 @@ from django.contrib import admin
 from rest_framework import routers
 from book import views as bookview
 from account import views as accountview
+from xadmin.plugins import xversion
+import xadmin
+xadmin.autodiscover()
+xversion.register_models()
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -25,8 +29,8 @@ router.register(r'books', bookview.BookInformationViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^xadmin/',include('xadmin.site.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/', xadmin.site.urls),
+    # url(r'^admin/', admin.site.urls),
     url(r'^books/', include('book.urls')),
     url(r'^auth/$', accountview.UsersView.as_view()),
     url(r'^product/', include('curriculum.urls')),
