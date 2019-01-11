@@ -5,3 +5,8 @@ PyMySqlDB
 Pillow
 whitenoise
 uwsgi
+future
+django-crispy-forms
+django-reversion
+django-formtools
+httplib2

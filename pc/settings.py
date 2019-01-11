@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'xadmin',   # 添加
+    'crispy_forms',     # 添加
+    'reversion',    # 添加
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

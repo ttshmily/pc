@@ -25,6 +25,7 @@ router.register(r'books', bookview.BookInformationViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^xadmin/',include('xadmin.site.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^books/', include('book.urls')),
     url(r'^auth/$', accountview.UsersView.as_view()),
