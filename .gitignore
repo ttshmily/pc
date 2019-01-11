@@ -26,3 +26,5 @@ tests/report/
 *.pid
 __pycache__/
 local_settings.py
+### xadmin ###
+xadmin/static/

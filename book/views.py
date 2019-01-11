@@ -3,9 +3,9 @@ from rest_framework.views import APIView
 from book.models import BookInformation
 from book.serializers import BookInformationSerializer
 from django.http import HttpResponse, JsonResponse
+
+
 # Create your views here.
-
-
 def index(request):
     return HttpResponse("Hello, world. You're at the book index.")
 
@@ -26,7 +26,3 @@ class BookView(APIView):
         # request.auth
         ret = {'code': 0, 'msg': 'success'}
         return JsonResponse(ret)
-
-
-
-

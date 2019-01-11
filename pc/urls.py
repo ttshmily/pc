@@ -19,16 +19,15 @@ from rest_framework import routers
 from book import views as bookview
 from account import views as accountview
 
-
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'books', bookview.BookInformationViewSet)
-# router.register(r'account', accountview.AccountViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^books/', include('book.urls')),
     url(r'^auth/$', accountview.UsersView.as_view()),
+    url(r'^product/', include('curriculum.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
