@@ -20,6 +20,12 @@ class Users(models.Model):
     last_login_date = models.TimeField(verbose_name='最后登录日期', null=False)
     last_login_ip = models.GenericIPAddressField(verbose_name='最后登录IP', null=True)
 
+    def __str__(self):
+        return self.mobile
+
+    class Meta:
+        verbose_name = '用户表'
+        verbose_name_plural = verbose_name
     # def save(self, *args, **kwargs):
     #     if self.user_id is None:
     #         self.password = hashlib.sha1(bytes(self.password, encoding='utf-8')).hexdigest()
@@ -30,4 +36,8 @@ class Tokens(models.Model):
     user = models.ForeignKey(to='Users', on_delete=models.DO_NOTHING)
     token = models.CharField(max_length=64)
     expire_to = models.TimeField(null=True)
+
+    class Meta:
+        verbose_name = '密码表'
+        verbose_name_plural = verbose_name
 
