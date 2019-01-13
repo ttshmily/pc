@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Users(models.Model):
-    user_id = models.AutoField(max_length=20, unique=True, verbose_name='用户ID', primary_key=True)
+    user_id = models.AutoField(max_length=20, unique=True, verbose_name='用户账号', primary_key=True)
 
     signup_type_choice = ((1, 'MOBILE'), (2, 'EMAIL'), (3, 'WX'))
     signup_type = models.CharField(choices=signup_type_choice, max_length=1, verbose_name='登录类型')

@@ -32,4 +32,17 @@ class LogAdmin(object):
     search_fields = ['ip_addr', 'message']
     model_icon = 'fa fa-cog'
 
+
+class BaseSetting(object):
+    enable_themes = False   # 打开主题功能
+    use_bootswatch = True  #
+
+
+class GlobalSettings(object):
+    site_title = "小小公司管理系统"  # 系统名称
+    site_footer = "小小公司管理系统"      # 底部版权栏
+
+
 xadmin.site.register(Log, LogAdmin)
+xadmin.site.register(xadmin.views.BaseAdminView, BaseSetting)
+xadmin.site.register(xadmin.views.CommAdminView, GlobalSettings)
