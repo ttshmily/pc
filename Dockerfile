@@ -1,4 +1,4 @@
-FROM python-base
+FROM daocloud.io/ttshmily/python-base
 
 MAINTAINER Fang Chao <ttshmilyfc@qq.com>
 
