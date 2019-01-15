@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python-base
 
 MAINTAINER Fang Chao <ttshmilyfc@qq.com>
 
